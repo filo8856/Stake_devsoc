@@ -1,0 +1,2 @@
+C:/Stake/android/app/.cxx/RelWithDebInfo/1744333d/arm64-v8a/CMakeFiles/edit_cache.dir
+C:/Stake/android/app/.cxx/RelWithDebInfo/1744333d/arm64-v8a/CMakeFiles/rebuild_cache.dir

@@ -544,14 +544,14 @@ class _MainsState extends State<Mains> {
                             bal += (a * tempmax);
                             hist.insert(
                               0,
-                              "Won     $wager   $a alike    \$$tempbal        +\$$result",
+                              "Won             $wager              $a           +\$$result",
                             );
                           } else {
                             f = 0;
                             bal = bal - (a * tempmax);
                             hist.insert(
                               0,
-                              "Lost     $wager   $a alike    \$$tempbal        -\$$result",
+                              "Lost             $wager              $a           -\$$result",
                             );
                           }
                           max = (bal / a).floor();
