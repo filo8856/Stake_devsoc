@@ -11,7 +11,6 @@ class Mains extends StatefulWidget {
 }
 
 List<String> hist = [];
-int tempmax = (bal / a).floor();
 int tempbal = 10;
 int result = 1;
 int f = 5;
@@ -25,10 +24,11 @@ int r4 = 6;
 String w = '';
 int a = 2;
 String pe = '';
-var pc = TextEditingController();
 int a1 = 1;
 bool te = false;
 int max = 5;
+int tempmax = (bal / a).floor();
+var pc = TextEditingController();
 
 void tp() {
   if (a == 4) {
@@ -69,7 +69,7 @@ class _MainsState extends State<Mains> {
         backgroundColor: Colors.white,
         leading: IconButton(
           iconSize: 55,
-          icon: Icon(Icons.history),
+          icon: Icon(Icons.timeline),
           onPressed: () {
             Navigator.push(
               context,
@@ -77,6 +77,33 @@ class _MainsState extends State<Mains> {
             );
           },
         ),
+        actions: [
+          IconButton(
+            iconSize: 55,
+            color: Colors.black,
+            onPressed: () {setState(() {
+              hist = [];
+              tempbal = 10;
+              result = 1;
+              f = 5;
+              sc = 0;
+              bal = 10;
+              wager = 1;
+              r1 = 6;
+              r2 = 6;
+              r3 = 6;
+              r4 = 6;
+              w = '';
+              a = 2;
+              pe = '';
+              a1 = 1;
+              te = false;
+              max = 5;
+              tempmax = (bal / a).floor();
+            });},
+            icon: Icon(Icons.refresh),
+          ),
+        ],
         centerTitle: true,
         title: Image.asset(
           "assets/Stake_logo.svg.png",
@@ -94,7 +121,6 @@ class _MainsState extends State<Mains> {
                 Text(
                   'Bal\n\$$bal',
                   style: TextStyle(
-                    //fontStyle: FontStyle.italic,
                     color: Colors.black,
                     fontSize: 25.0,
                     fontWeight: FontWeight.bold,
@@ -104,7 +130,6 @@ class _MainsState extends State<Mains> {
                 Text(
                   'Wager\n\$$wager',
                   style: TextStyle(
-                    //fontStyle: FontStyle.italic,
                     color: Colors.black,
                     fontSize: 25.0,
                     fontWeight: FontWeight.bold,
@@ -375,7 +400,7 @@ class _MainsState extends State<Mains> {
                   sc = 0;
                   Timer.periodic(Duration(milliseconds: 50), (timer) {
                     setState(() {
-                      pe='';
+                      pe = '';
                       r1 = Random().nextInt(6) + 1;
                     });
 
@@ -453,7 +478,7 @@ class _MainsState extends State<Mains> {
                   });
                 } else {
                   setState(() {
-                    f=5;
+                    f = 5;
                     pe = "Invalid Wager";
                   });
                 }
@@ -544,14 +569,14 @@ class _MainsState extends State<Mains> {
                             bal += (a * tempmax);
                             hist.insert(
                               0,
-                              "Won             $wager              $a           +\$$result",
+                              "Won     $wager   $a alike    \$$tempbal        +\$$result",
                             );
                           } else {
                             f = 0;
                             bal = bal - (a * tempmax);
                             hist.insert(
                               0,
-                              "Lost             $wager              $a           -\$$result",
+                              "Lost     $wager   $a alike    \$$tempbal        -\$$result",
                             );
                           }
                           max = (bal / a).floor();
@@ -583,12 +608,12 @@ class _MainsState extends State<Mains> {
                 fontWeight: FontWeight.bold,
               ),
             )
-                : (f == 0)
+                : (bal < 2)
                 ? Text(
-              'You lost $result',
+              'Game Over',
               style: TextStyle(
                 //fontStyle: FontStyle.italic,
-                color: Colors.black,
+                color: Colors.red,
                 fontSize: 25.0,
                 fontWeight: FontWeight.bold,
               ),
@@ -599,6 +624,16 @@ class _MainsState extends State<Mains> {
               style: TextStyle(
                 //fontStyle: FontStyle.italic,
                 color: Colors.red,
+                fontSize: 25.0,
+                fontWeight: FontWeight.bold,
+              ),
+            )
+                : (f == 0)
+                ? Text(
+              'You lost $result',
+              style: TextStyle(
+                //fontStyle: FontStyle.italic,
+                color: Colors.black,
                 fontSize: 25.0,
                 fontWeight: FontWeight.bold,
               ),
